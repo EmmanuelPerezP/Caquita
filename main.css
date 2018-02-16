@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+.container {
+  height: 100vh;
+  display: flex; /* or inline-flex */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center;     /* center items horizontally, in this case */
+}
+
+.center-element {
+  /* background-color: #74993e; */
+  align-self: center;
+  text-align: center;
+  display:flex;
+}
