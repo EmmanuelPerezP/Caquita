@@ -21,8 +21,13 @@ html, body {
 }
 
 canvas {
-position:absolute;
-top:0;
-left:0;
-z-index:-1;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1;
+  background: #f4c946;
+  background: -moz-radial-gradient(center, ellipse cover, #f4c946 0%, #ed9017 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, #f4c946 0%,#ed9017 100%);
+  background: radial-gradient(ellipse at center, #f4c946 0%,#ed9017 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4c946', endColorstr='#ed9017',GradientType=1 );
 }

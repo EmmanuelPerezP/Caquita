@@ -1,5 +1,6 @@
 var mover;
 var img;
+var movers = [];
 
 function preload() {
   img = loadImage('caquita.png');
@@ -8,21 +9,25 @@ function preload() {
 function setup() {
   var canvas = createCanvas(windowWidth, windowHeight);
 
+  img = loadImage('caquita.png');
   // Move the canvas so it's inside our <div id="sketch-holder">.
   canvas.parent('p5-container');
-  mover = new Mover();
-  mover1 = new Mover();
-  mover2 = new Mover();
-  mover3 = new Mover();
-  mover4 = new Mover();
+
+  for (var i = 0; i < 20; i++) {
+      movers[i] = new Mover();
+  }
+
+  bg = loadImage("background.jpg");
 }
 
 var draw = function() {
-  background(255, 255, 255);
+  clear();
 
-  mover.update();
-  mover.checkEdges();
-  mover.display();
+  for (var i = 0; i < movers.length; i++) {
+      movers[i].update();
+      movers[i].checkEdges();
+      movers[i].display();
+  }
 };
 
 function windowResized() {
@@ -32,7 +37,7 @@ function windowResized() {
 // Adapted from Dan Shiffman, natureofcode.com
 
 var Mover = function() {
-  this.position = createVector(random(width), random(height));
+  this.position = createVector(random(windowWidth), random(windowHeight));
   this.velocity = createVector(7, 2);
 };
 
@@ -50,17 +55,17 @@ Mover.prototype.display = function() {
 
 Mover.prototype.checkEdges = function() {
 
-  if (this.position.x > width) {
+  if (this.position.x > windowWidth) {
     this.position.x = 0;
   }
   else if (this.position.x < 0) {
-    this.position.x = width;
+    this.position.x = windowWidth;
   }
 
-  if (this.position.y > height) {
+  if (this.position.y > windowHeight) {
     this.position.y = 0;
   }
   else if (this.position.y < 0) {
-    this.position.y = height;
+    this.position.y = windowHeight;
   }
 };

@@ -11,6 +11,12 @@
     <script src="sketch.js"></script>
     <!-- Custom styles for this template -->
     <link href="main.css" rel="stylesheet">
+    <script>
+    function playSound() {
+          var audio = new Audio('audio_file.mp3');
+          audio.play();
+      }
+    </script>
   </head>
 
   <body>
@@ -18,7 +24,9 @@
     <div id="p5-container" class="container">
 
       <div class="center-element">
-        <img src="caquita.png" height="300" alt="caquita">
+        <a onclick="">
+          <img src="caquita.png" alt="caquita animacion" onmousedown="playSound();">
+        </a>
       </div>
 
     </div><!-- /.container -->
