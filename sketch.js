@@ -1,6 +1,15 @@
 var mover;
 var img;
 var movers = [];
+var numberofobjects;
+
+function playSound() {
+  movers.push(new Mover());
+  numberofobjects+=1;
+  console.log("cantidad de caquitas: " + numberofobjects.toString())
+  var audio = new Audio('fart0.mp3');
+  audio.play();
+}
 
 function preload() {
   img = loadImage('caquita.png');
@@ -13,7 +22,14 @@ function setup() {
   // Move the canvas so it's inside our <div id="sketch-holder">.
   canvas.parent('p5-container');
 
-  for (var i = 0; i < 40; i++) {
+  if(/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)){
+    numberofobjects = 10;
+  }
+  else{
+    numberofobjects = 30;
+  }
+
+  for (var i = 0; i < numberofobjects; i++) {
       movers[i] = new Mover();
   }
 
