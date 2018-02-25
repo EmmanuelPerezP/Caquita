@@ -13,7 +13,7 @@ function setup() {
   // Move the canvas so it's inside our <div id="sketch-holder">.
   canvas.parent('p5-container');
 
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 40; i++) {
       movers[i] = new Mover();
   }
 
