@@ -7,7 +7,23 @@ function playSound() {
   movers.push(new Mover());
   numberofobjects+=1;
   console.log("cantidad de caquitas: " + numberofobjects.toString())
-  var audio = new Audio('fart0.mp3');
+  var audio;
+  var num = random(1);
+  if (num < 0.5) {
+    audio = new Audio('fart0.mp3');
+  }
+  else if (num < 0.7) {
+    audio = new Audio('fart1.mp3');
+  }
+  else if (num < 0.8){
+    var audio = new Audio('fart2.mp3');
+  }
+  else if (num < 0.9){
+    var audio = new Audio('fart3.mp3');
+  }
+  else{
+    var audio = new Audio('fart4.mp3');
+  }
   audio.play();
 }
 
