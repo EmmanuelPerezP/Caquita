@@ -36,7 +36,7 @@ function playSound() {
 }
 
 function setup() {
-  var canvas = createCanvas(windowWidth, windowHeight);
+  var canvas = createCanvas(displayWidth , displayHeight );
 
   // Move the canvas so it's inside our <div id="sketch-holder">.
   canvas.parent('p5-container');
@@ -66,13 +66,13 @@ var draw = function() {
 };
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(displayWidth , displayHeight);
 }
 
 // Adapted from Dan Shiffman, natureofcode.com
 
 var Mover = function() {
-  this.position = createVector(random(windowWidth), random(windowHeight));
+  this.position = createVector(random(displayWidth ), random(displayHeight));
   this.velocity = createVector(7, 2);
 };
 
@@ -90,17 +90,17 @@ Mover.prototype.display = function() {
 
 Mover.prototype.checkEdges = function() {
 
-  if (this.position.x > windowWidth) {
+  if (this.position.x > displayHeight ) {
     this.position.x = 0;
   }
   else if (this.position.x < 0) {
-    this.position.x = windowWidth;
+    this.position.x = displayHeight ;
   }
 
-  if (this.position.y > windowHeight) {
+  if (this.position.y > displayHeight) {
     this.position.y = 0;
   }
   else if (this.position.y < 0) {
-    this.position.y = windowHeight;
+    this.position.y = displayHeight;
   }
 };
