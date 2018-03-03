@@ -23,11 +23,14 @@
     <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Avoid double tap zoom in phones  -->
+    <meta name="viewport" content="user-scalable=no" />
+
     <title>Caquita HeHEhE</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
     <!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
     <script src="sketch.js"></script>
     <!-- Custom styles for this template -->
     <link href="main.css" rel="stylesheet">
@@ -39,7 +42,7 @@
 
       <div class="center-element">
         <div class="first-element">
-          <h1 id='text'> Kaka </h1>
+          <h1 id='counter'> Toca la caquita :) </h1>
         </div>
         <div class="second-element">
           <img src="caquita.png" alt="caquita animacion" onmousedown="playSound();">

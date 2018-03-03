@@ -2,18 +2,68 @@ var mover;
 var img;
 var movers = [];
 var numberofobjects;
-var text;
+var contador;
 var poopCounter;
 
 function preload() {
   img = loadImage('caquita.png');
 }
 
-function playSound() {
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 
+function setup() {
+
+  // we do pixelDensity(1) to avoid lag in mobile, because p5 when rendering
+  // the canvas multplies windowidth * pixelDensity so it makes it to render
+  // alot more pixels than it has to.
+  // lookup https://github.com/processing/p5.js/blob/eb4c09094750ae03608a2c39aa72e85b59ed4252/src/core/p5.Renderer.js
+  // ctrl + f 'pixelDensity'
+  pixelDensity(1);
+
+  // 60 to 50 for better performance?
+  frameRate(50);
+
+  // logs to debug sounds
+  console.log("width" + window.innerWidth.toString());
+  console.log(window.innerHeight);
+  var canvas = createCanvas(window.innerWidth, window.innerHeight);
+
+  // Move the canvas so it's inside our <div id="sketch-holder">.
+  canvas.parent('p5-container');
+
+  // number of poop/move objects
+  poopCounter = 0;
+  numberofobjects = 3;
+  contador = document.getElementById('counter');
+
+  for (var i = 0; i < numberofobjects; i++) {
+      movers[i] = new Mover();
+  }
+};
+
+var draw = function() {
+  clear();
+  //background('#f4c946');
+  for (var i = 0; i < movers.length; i++) {
+      movers[i].update();
+      movers[i].checkEdges();
+      movers[i].display();
+  }
+};
+
+function updateCounter(){
   poopCounter+=1;
-  text.textContent = poopCounter.toString();
+  contador.textContent = poopCounter.toString();
+}
 
+function playSound() {
+  /*
+  playSound updates the counter and makes a new Poop
+  */
+
+  updateCounter();
   movers.push(new Mover());
   numberofobjects += 1;
   console.log("cantidad de caquitas: " + numberofobjects.toString())
@@ -40,36 +90,6 @@ function playSound() {
     console.log("audio4");
   }
 }
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
-
-function setup() {
-  console.log("width" + window.innerWidth.toString());
-  console.log(window.innerHeight);
-  var canvas = createCanvas(window.innerWidth, window.innerHeight);
-
-  // Move the canvas so it's inside our <div id="sketch-holder">.
-  canvas.parent('p5-container');
-
-  poopCounter = 0;
-  numberofobjects = 10;
-  text = document.getElementById('text');
-
-  for (var i = 0; i < numberofobjects; i++) {
-      movers[i] = new Mover();
-  }
-};
-
-var draw = function() {
-  background('#f4c946');
-  for (var i = 0; i < movers.length; i++) {
-      movers[i].update();
-      movers[i].checkEdges();
-      movers[i].display();
-  }
-};
-
 
 // Adapted from Dan Shiffman, natureofcode.com
 
@@ -88,7 +108,8 @@ Mover.prototype.display = function() {
   strokeWeight(2);
   fill(127);
   */
-  image(img, this.position.x, this.position.y, 100, 100);
+  // poop image
+  image(img, this.position.x, this.position.y, 200, 200);
   //ellipse(this.position.x, this.position.y, 48, 48);
 };
 
