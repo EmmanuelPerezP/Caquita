@@ -24,7 +24,7 @@ function setup() {
 
   // 60 to 50 for better performance?
   frameRate(50);
-  
+
   // logs to debug sounds
   console.log("width" + window.innerWidth.toString());
   console.log(window.innerHeight);
@@ -33,20 +33,27 @@ function setup() {
   // Move the canvas so it's inside our <div id="sketch-holder">.
   canvas.parent('p5-container');
 
-  // number of poop/move objects
+  // poop counter for the html tag
   poopCounter = 0;
-  numberofobjects = 3;
+  // html tag
   contador = document.getElementById('counter');
+  // number of poop/move objects
+  numberofobjects = 3;
 
   for (var i = 0; i < numberofobjects; i++) {
-      movers[i] = new Mover();
+      movers[i] = new Mover(random(1, 20));
   }
 };
 
 var draw = function() {
   clear();
   //background('#f4c946');
+
   for (var i = 0; i < movers.length; i++) {
+      var wind = createVector(0.01, 0);
+      var gravity = createVector(0, 0.1*movers[i].mass);
+      movers[i].applyForce(wind);
+      movers[i].applyForce(gravity);
       movers[i].update();
       movers[i].checkEdges();
       movers[i].display();
@@ -64,7 +71,7 @@ function playSound() {
   */
 
   updateCounter();
-  movers.push(new Mover());
+  movers.push(new Mover(random(1, 20)));
   numberofobjects += 1;
   console.log("cantidad de caquitas: " + numberofobjects.toString())
   var audio;
@@ -93,13 +100,26 @@ function playSound() {
 
 // Adapted from Dan Shiffman, natureofcode.com
 
-var Mover = function() {
-  this.position = createVector(random(window.innerWidth), random(window.innerHeight));
-  this.velocity = createVector(7, 2);
+var Mover = function(m) {
+  this.mass = m;
+  this.position = createVector(window.innerWidth/2, window.innerHeight/2);
+  this.velocity = createVector(0, 0);
+  this.acceleration = createVector(0, 0);
+};
+
+// Simulates Newton's second law
+// Receive a force, divide by mass, add to acceleration
+Mover.prototype.applyForce = function(force) {
+    var f = p5.Vector.div(force, this.mass);
+    this.acceleration.add(f);
 };
 
 Mover.prototype.update = function() {
+  // Simulates Motion 101 from the vectors tutorial
+  this.velocity.add(this.acceleration);
   this.position.add(this.velocity);
+  // Now we make sure to clear acceleration each time
+  this.acceleration.mult(0);
 };
 
 Mover.prototype.display = function() {
@@ -109,21 +129,24 @@ Mover.prototype.display = function() {
   fill(127);
   */
   // poop image
-  image(img, this.position.x, this.position.y, 200, 200);
+  image(img, this.position.x, this.position.y, this.mass*16, this.mass*16);
   //ellipse(this.position.x, this.position.y, 48, 48);
 };
 
 Mover.prototype.checkEdges = function() {
 
   if (this.position.x > window.innerWidth) {
-    this.position.x = 0;
+    this.position.x = window.innerWidth;
+    this.velocity.x *= -1;
   }
   else if (this.position.x < 0) {
-    this.position.x = window.innerWidth;
+    this.velocity.x *= -1;
+    this.position.x = 0;
   }
 
   if (this.position.y > window.innerHeight) {
-    this.position.y = 0;
+    this.position.y = window.innerHeight;
+    this.velocity.y *= -1;
   }
   else if (this.position.y < 0) {
     this.position.y = window.innerHeight;
