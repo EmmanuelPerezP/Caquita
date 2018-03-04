@@ -35,7 +35,7 @@ function setup() {
 
   // number of poop/move objects
   poopCounter = 0;
-  numberofobjects = 3;
+  numberofobjects = 0;
   contador = document.getElementById('counter');
 
   for (var i = 0; i < numberofobjects; i++) {
