@@ -52,7 +52,7 @@ var draw = function() {
   for (var i = 0; i < movers.length; i++) {
       var wind = createVector(0.01, 0);
       var gravity = createVector(0, 0.1*movers[i].mass);
-      movers[i].applyForce(wind);
+      movers[i].applyWind();
       movers[i].applyForce(gravity);
       movers[i].update();
       movers[i].checkEdges();
@@ -100,8 +100,9 @@ function playSound() {
 
 // Adapted from Dan Shiffman, natureofcode.com
 
-var Mover = function(m) {
+var Mover = function(m,n) {
   this.mass = m;
+  this.wind = createVector(random(-0.1,0.1),0);
   this.position = createVector(window.innerWidth/2, window.innerHeight/2);
   this.velocity = createVector(0, 0);
   this.acceleration = createVector(0, 0);
@@ -114,11 +115,15 @@ Mover.prototype.applyForce = function(force) {
     this.acceleration.add(f);
 };
 
+Mover.prototype.applyWind = function(){
+  this.applyForce(this.wind);
+};
+
 Mover.prototype.update = function() {
   // Simulates Motion 101 from the vectors tutorial
   this.velocity.add(this.acceleration);
   this.position.add(this.velocity);
-  // Now we make sure to clear acceleration each time
+  // Now we mak.we sure to clear acceleration each time
   this.acceleration.mult(0);
 };
 
