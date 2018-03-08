@@ -26,8 +26,6 @@ function setup() {
   frameRate(50);
 
   // logs to debug sounds
-  console.log("width" + window.innerWidth.toString());
-  console.log(window.innerHeight);
   var canvas = createCanvas(window.innerWidth, window.innerHeight);
 
   // Move the canvas so it's inside our <div id="sketch-holder">.
@@ -100,8 +98,9 @@ function playSound() {
 
 // Adapted from Dan Shiffman, natureofcode.com
 
-var Mover = function(m,n) {
+var Mover = function(m) {
   this.mass = m;
+  this.size = m*16;
   this.wind = createVector(random(-0.1,0.1),0);
   this.position = createVector((window.innerWidth/2)-(m*16/2), (window.innerHeight/2)-(m*16/2));
   this.velocity = createVector(0, 0);
@@ -140,8 +139,8 @@ Mover.prototype.display = function() {
 
 Mover.prototype.checkEdges = function() {
 
-  if (this.position.x > window.innerWidth) {
-    this.position.x = window.innerWidth;
+  if (this.position.x+this.size > window.innerWidth) {
+    this.position.x = window.innerWidth-this.size;
     this.velocity.x *= -1;
   }
   else if (this.position.x < 0) {
@@ -149,8 +148,8 @@ Mover.prototype.checkEdges = function() {
     this.position.x = 0;
   }
 
-  if (this.position.y > window.innerHeight) {
-    this.position.y = window.innerHeight;
+  if ((this.position.y+this.size) > window.innerHeight) {
+    this.position.y = window.innerHeight-this.size;
     this.velocity.y *= -1;
   }
   else if (this.position.y < 0) {

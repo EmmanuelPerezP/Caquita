@@ -17,8 +17,11 @@ h1 {
 
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: #3333;
     overflow: hidden;
+    display: flex;
+    position: absolute;
+    top: 0;
 }
 
 /* Style the links inside the navigation bar */
@@ -28,7 +31,8 @@ h1 {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
 }
 
 /* Change the color of links on hover */
@@ -37,12 +41,7 @@ h1 {
     color: black;
 }
 
-/* Add a color to the active/current link */
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
+/* ------------------------------------------------------------------------- */
 .container {
   height: 100%;
   display: flex; /* or inline-flex */
