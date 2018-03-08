@@ -103,7 +103,7 @@ function playSound() {
 var Mover = function(m,n) {
   this.mass = m;
   this.wind = createVector(random(-0.1,0.1),0);
-  this.position = createVector(window.innerWidth/2, window.innerHeight/2);
+  this.position = createVector((window.innerWidth/2)-(m*16/2), (window.innerHeight/2)-(m*16/2));
   this.velocity = createVector(0, 0);
   this.acceleration = createVector(0, 0);
 };
