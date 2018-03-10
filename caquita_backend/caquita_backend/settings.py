@@ -25,7 +25,7 @@ SECRET_KEY = 'm0@4d#ph=tdsvm&^052vb+4^8k6hh!88abm-0#y647@p*($8s)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.caquita.party', '127.0.0.1']
 
 
 # Application definition
@@ -58,8 +58,8 @@ CORS_ORIGIN_WHITELIST = (
     'google.com',
     'www.caquita.party',
     'localhost:8000',
-    '0.0.0.0:8000',
-    '127.0.0.1:9000',
+    '0.0.0.0:8080',
+    '127.0.0.1:8080',
 )
 
 ROOT_URLCONF = 'caquita_backend.urls'
