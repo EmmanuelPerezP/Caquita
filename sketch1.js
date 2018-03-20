@@ -90,6 +90,18 @@ function updateCounter(){
   contador.textContent = poopCounter.toString();
 }
 
+function showScoreTable(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         // Typical action to be performed when the document is ready:
+         console.log(xhttp.responseText);
+      }
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/api/", true);
+  xhttp.send();
+}
+
 function playSound() {
   /*
   playSound updates the counter and makes a new Poop
