@@ -41,6 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+    <script src="countdown.js"></script>
     <script src="sketch1.js"></script>
     <!-- Custom styles for this template -->
     <link href="main.css" rel="stylesheet">
@@ -52,12 +53,13 @@
 
       <div class="topnav">
         <a href="#news">El muro</a>
-        <a href="#contact">High Scores</a>
+        <a href="#contact" onmousedown="start();">High Scores</a>
         <a href="#about">Acerca de</a>
       </div>
 
       <div class="center-element">
         <div class="first-element">
+          <h1 id='clock'> 00:000 </h1>
           <h1 id='counter'> Toca la caquita :P </h1>
         </div>
         <div class="second-element">

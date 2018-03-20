@@ -5,6 +5,30 @@ var numberofobjects;
 var contador;
 var poopCounter;
 
+// Clock doc
+// http://countdownjs.org/readme.html
+var timerId;
+
+function start(){
+  var date = new Date();
+  var date2 = new Date();
+  date.setSeconds(date.getSeconds() + 10)
+
+  timerId = countdown(
+      date,
+      (ts) => {
+
+        clock.textContent = ts.seconds + ":" + ts.milliseconds;
+        console.log(ts.toString());
+        if(ts.value > 0){
+          window.clearInterval(timerId);
+          clock.textContent = "0:000"
+        }
+      },
+      countdown.MINUTES|countdown.SECONDS|countdown.MILLISECONDS
+  );
+}
+
 function preload() {
   img = loadImage('caquita.png');
 }
@@ -33,6 +57,8 @@ function setup() {
 
   // poop counter for the html tag
   poopCounter = 0;
+  // clock
+  clock = document.getElementById('clock');
   // html tag
   contador = document.getElementById('counter');
   // number of poop/move objects
@@ -46,6 +72,7 @@ function setup() {
 var draw = function() {
   clear();
   //background('#f4c946');
+
 
   for (var i = 0; i < movers.length; i++) {
       var wind = createVector(0.01, 0);
