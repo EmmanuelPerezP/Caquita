@@ -58,7 +58,7 @@
                var response =  JSON.parse(xhttp.responseText);
                for (var i = 0; i < response.length; i++) {
                  var d1 = document.getElementById('table');
-                 d1.insertAdjacentHTML('beforeend', '<tr><th>'+ response[i].name + '</th><th>' + response[i].score + '</th></tr>');
+                 d1.insertAdjacentHTML('beforeend', '<tr><td>'+ response[i].name + '</th><td>' + response[i].score + '</td></tr>');
                }
                console.log(xhttp.responseText);
             }
@@ -90,14 +90,14 @@
               <th>Nick</th>
               <th>Scores</th>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>Ema</td>
               <td>87</td>
             </tr>
             <tr>
               <td>Jose</td>
               <td>23</td>
-            </tr>
+            </tr> -->
           </table>
         </div>
       </div>

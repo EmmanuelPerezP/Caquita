@@ -141,7 +141,7 @@ function showScoreTable(){
          var response =  JSON.parse(xhttp.responseText);
          for (var i = 0; i < response.length; i++) {
            var d1 = document.getElementById('table');
-           d1.insertAdjacentHTML('beforeend', '<tr><th>'+ response[i].name + '</th><th>' + response[i].score + '</th></tr>');
+           d1.insertAdjacentHTML('beforeend', '<tr><td>'+ response[i].name + '</td><td>' + response[i].score + '</td></tr>');
          }
          console.log(xhttp.responseText);
       }
