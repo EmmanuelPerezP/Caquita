@@ -28,7 +28,7 @@ function startClock(){
           console.log("finished");
           // insert the score submiter (?)
           var d1 = document.getElementById('first-element');
-          d1.insertAdjacentHTML('beforeend', '<div class="score-input" display="none"><input class="textInput" type="text" id="fname4" name="firstname" class="inputborder" placeholder="Nickname"><input class="button" type="button" onclick="uploadScoreAndReload()" value="Subir Score"></div>');
+          d1.insertAdjacentHTML('beforeend', '<div class="score-input" display="none"><input class="textInput" type="text" id="nick" name="firstname" class="inputborder" placeholder="Nickname"><input class="button" type="button" onclick="uploadScoreAndReload()" value="Subir Score"></div>');
           contador.textContent ="Creaste " + poopCounter.toString() + " caquitas!";
         }
       },
@@ -44,8 +44,27 @@ function uploadScoreAndReload(){
          console.log(xhttp.responseText);
       }
   };
-  xhttp.open("GET", "http://127.0.0.1:8000/api/", true);
-  xhttp.send();
+  xhttp.open("POST", "http://127.0.0.1:8000/api/", true);
+
+  var nick = document.getElementById('nick').value
+
+  var jsonData = { "name": nick, "score": poopCounter};
+
+  // set headers for json
+  xhttp.setRequestHeader( 'Accept', 'application/json');
+  xhttp.setRequestHeader( 'Content-Type', 'application/json' );
+  // HTTP Protocol can only work with strings when transmitting data over the internet.
+  // JSON is a class and .stringify is a class-method. We use it to format
+  // the Javascript Data, which lives in memory, to JSON string.
+  var formattedJsonData = JSON.stringify(jsonData);
+
+  // debug
+  console.log(jsonData);
+  console.log(JSON.parse(formattedJsonData));
+
+  // send it off
+  xhttp.send(formattedJsonData);
+  // redirect to scores
   window.location.replace("/scores.html");
 }
 
@@ -119,6 +138,11 @@ function showScoreTable(){
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
          // Typical action to be performed when the document is ready:
+         var response =  JSON.parse(xhttp.responseText);
+         for (var i = 0; i < response.length; i++) {
+           var d1 = document.getElementById('table');
+           d1.insertAdjacentHTML('beforeend', '<tr><th>'+ response[i].name + '</th><th>' + response[i].score + '</th></tr>');
+         }
          console.log(xhttp.responseText);
       }
   };
