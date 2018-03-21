@@ -4,12 +4,14 @@ var movers = [];
 var numberofobjects;
 var contador;
 var poopCounter;
+var canCount;
+var gamestarted;
 
 // Clock doc
 // http://countdownjs.org/readme.html
 var timerId;
 
-function start(){
+function startClock(){
   var date = new Date();
   var date2 = new Date();
   date.setSeconds(date.getSeconds() + 10)
@@ -19,14 +21,32 @@ function start(){
       (ts) => {
 
         clock.textContent = ts.seconds + ":" + ts.milliseconds;
-        console.log(ts.toString());
         if(ts.value > 0){
           window.clearInterval(timerId);
-          clock.textContent = "0:000"
+          clock.textContent = "0:000";
+          canCount = false;
+          console.log("finished");
+          // insert the score submiter (?)
+          var d1 = document.getElementById('first-element');
+          d1.insertAdjacentHTML('beforeend', '<div class="score-input" display="none"><input class="textInput" type="text" id="fname4" name="firstname" class="inputborder" placeholder="Nickname"><input class="button" type="button" onclick="uploadScoreAndReload()" value="Subir Score"></div>');
+          contador.textContent ="Creaste " + poopCounter.toString() + " caquitas!";
         }
       },
       countdown.MINUTES|countdown.SECONDS|countdown.MILLISECONDS
   );
+}
+
+function uploadScoreAndReload(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         // Typical action to be performed when the document is ready:
+         console.log(xhttp.responseText);
+      }
+  };
+  xhttp.open("GET", "http://127.0.0.1:8000/api/", true);
+  xhttp.send();
+  window.location.replace("/scores.html");
 }
 
 function preload() {
@@ -45,6 +65,10 @@ function setup() {
   // lookup https://github.com/processing/p5.js/blob/eb4c09094750ae03608a2c39aa72e85b59ed4252/src/core/p5.Renderer.js
   // ctrl + f 'pixelDensity'
   pixelDensity(1);
+
+  // cant spawn new poops yet
+  canCount = true;
+  gameStarted = false;
 
   // 60 to 50 for better performance?
   frameRate(50);
@@ -102,36 +126,49 @@ function showScoreTable(){
   xhttp.send();
 }
 
-function playSound() {
+function startGame(){
+  if(gameStarted && canCount){
+    createPoop();
+    updateCounter();
+  }
+  else if (!gameStarted){
+    gameStarted = true;
+    canCount = true;
+    startClock();
+  }
+}
+
+function createPoop() {
   /*
   playSound updates the counter and makes a new Poop
   */
 
-  updateCounter();
-  movers.push(new Mover(random(1, 20)));
-  numberofobjects += 1;
-  console.log("cantidad de caquitas: " + numberofobjects.toString())
-  var audio;
-  var num = random(1);
-  if (num < 0.5) {
-    audio0 = new Audio('fart0.mp3');
-    audio0.play();
-    console.log("audio0");
-  }
-  else if (num < 0.8){
-    audio2 = new Audio('fart2.mp3');
-    audio2.play();
-    console.log("audio2");
-  }
-  else if (num < 0.9){
-    audio3 = new Audio('fart3.mp3');
-    audio3.play();
-    console.log("audio3");
-  }
-  else{
-    audio4 = new Audio('fart4.mp3');
-    audio4.play();
-    console.log("audio4");
+  if(canCount){
+    movers.push(new Mover(random(1, 20)));
+    numberofobjects += 1;
+    console.log("cantidad de caquitas: " + numberofobjects.toString())
+    var audio;
+    var num = random(1);
+    if (num < 0.5) {
+      audio0 = new Audio('fart0.mp3');
+      audio0.play();
+      console.log("audio0");
+    }
+    else if (num < 0.8){
+      audio2 = new Audio('fart2.mp3');
+      audio2.play();
+      console.log("audio2");
+    }
+    else if (num < 0.9){
+      audio3 = new Audio('fart3.mp3');
+      audio3.play();
+      console.log("audio3");
+    }
+    else{
+      audio4 = new Audio('fart4.mp3');
+      audio4.play();
+      console.log("audio4");
+    }
   }
 }
 

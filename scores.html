@@ -40,10 +40,12 @@
     <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
     -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-    <script src="countdown.js"></script>
-    <script src="sketch1.js"></script>
     <!-- Custom styles for this template -->
+    <style>
+      html {
+        background: #f4c946;
+      }
+    </style>
     <link href="main.css" rel="stylesheet">
   </head>
 
@@ -53,18 +55,29 @@
 
       <div class="topnav">
         <a href="#news">El muro</a>
-        <a href="scores.html" onmousedown="start();">High Scores</a>
+        <a href="index.html" onmousedown="start();">Caquita</a>
         <a href="#about">Acerca de</a>
       </div>
 
       <div class="center-element">
-        <div id="first-element" class="first-element">
-          <h1 id='clock'> 10:000 </h1>
-          <h1 id='counter'> Toca la caquita :P </h1>
-          <!-- here we insert the score submiter... -->
+        <div class="first-element">
+          <h1 id='texto'>quien desperdicia el tiempo en esto? hahahahhaheeeeeeeeeeeeeeeheh</h1>
         </div>
-        <div class="second-element">
-          <img src="caquita.png" alt="caquita animacion" onmousedown="startGame();">
+        <div class="first-element">
+          <table id="customers">
+            <tr>
+              <th>Nick</th>
+              <th>Scores</th>
+            </tr>
+            <tr>
+              <td>Ema</td>
+              <td>87</td>
+            </tr>
+            <tr>
+              <td>Jose</td>
+              <td>23</td>
+            </tr>
+          </table>
         </div>
       </div>
 
