@@ -55,7 +55,6 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    'google.com',
     'www.caquita.party',
     'localhost:8000',
     '0.0.0.0:8080',

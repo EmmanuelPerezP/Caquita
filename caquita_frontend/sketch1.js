@@ -44,7 +44,7 @@ function uploadScoreAndReload(){
          console.log(xhttp.responseText);
       }
   };
-  xhttp.open("POST", "http://127.0.0.1:8000/api/", true);
+  xhttp.open("POST", "/api/", true);
 
   var nick = document.getElementById('nick').value
 
@@ -146,7 +146,7 @@ function showScoreTable(){
          console.log(xhttp.responseText);
       }
   };
-  xhttp.open("GET", "http://127.0.0.1:8000/api/", true);
+  xhttp.open("GET", "/api/", true);
   xhttp.send();
 }
 
