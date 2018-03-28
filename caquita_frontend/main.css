@@ -76,7 +76,8 @@ score-input{
 }
 
 #elements{
-    margin-top: 30rem;
+    align-self: flex-start;
+    margin-top: 10rem;
     margin-bottom: 3rem;
 }
 
