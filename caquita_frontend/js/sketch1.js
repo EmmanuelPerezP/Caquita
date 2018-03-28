@@ -70,7 +70,7 @@ function uploadScoreAndReload(){
 
 // P5 function
 function preload() {
-  img = loadImage('caquita.png');
+  img = loadImage('images/caquita.png');
 }
 
 // P5 function
