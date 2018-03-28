@@ -44,7 +44,7 @@ function uploadScoreAndReload(){
          console.log(xhttp.responseText);
       }
   };
-  xhttp.open("POST", "http://127.0.0.1:8000/api/", true);
+  xhttp.open("POST", "/api/", true);
 
   var nick = document.getElementById('nick').value
 
@@ -141,12 +141,12 @@ function showScoreTable(){
          var response =  JSON.parse(xhttp.responseText);
          for (var i = 0; i < response.length; i++) {
            var d1 = document.getElementById('table');
-           d1.insertAdjacentHTML('beforeend', '<tr><th>'+ response[i].name + '</th><th>' + response[i].score + '</th></tr>');
+           d1.insertAdjacentHTML('beforeend', '<tr><td>'+ response[i].name + '</td><td>' + response[i].score + '</td></tr>');
          }
          console.log(xhttp.responseText);
       }
   };
-  xhttp.open("GET", "http://127.0.0.1:8000/api/", true);
+  xhttp.open("GET", "/api/", true);
   xhttp.send();
 }
 

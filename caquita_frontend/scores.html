@@ -59,12 +59,12 @@
                var response =  JSON.parse(xhttp.responseText);
                for (var i = 0; i < response.length; i++) {
                  var d1 = document.getElementById('table');
-                 d1.insertAdjacentHTML('beforeend', '<tr><th>'+ response[i].name + '</th><th>' + response[i].score + '</th></tr>');
+                 d1.insertAdjacentHTML('beforeend', '<tr><td>'+ response[i].name + '</th><td>' + response[i].score + '</td></tr>');
                }
                console.log(xhttp.responseText);
             }
         };
-        xhttp.open("GET", "http://127.0.0.1:8000/api/", true);
+        xhttp.open("GET", "/api/", true);
         xhttp.send();
       }
 
@@ -91,13 +91,14 @@
               <th>Nick</th>
               <th>Scores</th>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>Ema</td>
               <td>87</td>
             </tr>
             <tr>
               <td>Jose</td>
               <td>23</td>
+<<<<<<< HEAD:scores.html
             </tr>
             <tr>
               <td>Ema</td>
@@ -187,6 +188,9 @@
               <td>el ultimo</td>
               <td>23</td>
             </tr>
+=======
+            </tr> -->
+>>>>>>> 98061bff62a555c84f9ec465ddac997f9bb9ef94:caquita_frontend/scores.html
           </table>
         </div>
       </div>
