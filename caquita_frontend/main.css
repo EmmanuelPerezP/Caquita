@@ -16,9 +16,14 @@ h1 {
 }
 
 #texto{
-  font-size: 2em;
-  color: rgb(0, 0, 0);
+  font-size: 3em;
+  color: rgba(89, 51, 0, 1);
   padding-bottom: 3rem;
+}
+
+.parrafo, .parrafo a{
+  font-size: 2rem;
+  color: rgba(89, 51, 0, 1);
 }
 
 score-input{

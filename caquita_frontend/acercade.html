@@ -46,8 +46,11 @@
     <!-- Avoid double tap zoom in phones  -->
     <meta name="viewport" content="user-scalable=no" />
 
-    <title>High Scores | Caquita HeHEhE</title>
-    <meta name="description" content="La tabla de high scores de caquitas! cuantas caquitas podes cagar en 1 minuto? un proyecto de un programador aburrido">
+    <title>Acerca de | Caquita HeHEhE</title>
+    <meta name="description" content="Porque se creo la pagina caquita.party ???????">
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+    -->
     <!-- Custom styles for this template -->
     <style>
       html {
@@ -55,27 +58,6 @@
       }
     </style>
     <link href="main.css" rel="stylesheet">
-
-    <script>
-
-      window.onload = () => {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-               // Typical action to be performed when the document is ready:
-               var response =  JSON.parse(xhttp.responseText);
-               for (var i = 0; i < response.length; i++) {
-                 var d1 = document.getElementById('table');
-                 d1.insertAdjacentHTML('beforeend', '<tr><td>'+ response[i].name + '</th><td>' + response[i].score + '</td></tr>');
-               }
-               console.log(xhttp.responseText);
-            }
-        };
-        xhttp.open("GET", "/api/", true);
-        xhttp.send();
-      }
-
-    </script>
   </head>
 
   <body>
@@ -85,21 +67,18 @@
       <div class="topnav">
         <a href="#news">El muro</a>
         <a href="index.html" onmousedown="start();">Caquita</a>
-        <a href="acercade.html">Acerca de</a>
+        <a href="#about">Acerca de</a>
       </div>
 
       <div id="elements" class="center-element">
         <div class="first-element">
-          <h1 id='texto'>quien desperdicia el tiempo en esto? hahahahhaheeeeeeeeeeeeeeeheh</h1>
-        </div>
-        <div class="second-element">
-          <table id="table">
-            <tr>
-              <th>Nick</th>
-              <th>Scores</th>
-            </tr>
-
-          </table>
+          <h1 id='texto'>Por que existe esta pagina?</h1>
+          <div class="parrafo">
+            <p>bueno simplemente porque si, las caquitas merecen equalidad entre todos,
+              esta creada con P5 y javascript basico les pongo mi blog y mi github por si quieren visitar, pronto hare el codigo de esta pagina open source</p>
+            <a href="http://emmanuelperez.me">Blog</a>
+            <a href="https://github.com/EmmanuelPerezP">Github</a>
+          </div>
         </div>
       </div>
 
