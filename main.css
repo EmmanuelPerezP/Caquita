@@ -64,7 +64,7 @@ score-input{
   text-align: center;
   display:flex;
   flex-direction: column;
-  width: 93%;
+  width: 80%;
 }
 
 .first-element{
@@ -72,7 +72,12 @@ score-input{
 }
 
 .second-element{
-  flex:1;
+  flex:2;
+}
+
+#elements{
+    margin-top: 30rem;
+    margin-bottom: 3rem;
 }
 
 .textInput{
