@@ -25,7 +25,7 @@ function startClock(){
           window.clearInterval(timerId);
           clock.textContent = "0:000";
           canCount = false;
-          console.log("finished");
+          // console.log("finished");
           // insert the score submiter (?)
           var d1 = document.getElementById('first-element');
           d1.insertAdjacentHTML('beforeend', '<div class="score-input" display="none"><input class="textInput" type="text" id="nick" name="firstname" class="inputborder" placeholder="Nickname"><input class="button" type="button" onclick="uploadScoreAndReload()" value="Subir Score"></div>');
@@ -37,35 +37,21 @@ function startClock(){
 }
 
 function uploadScoreAndReload(){
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-         // Typical action to be performed when the document is ready:
-         console.log(xhttp.responseText);
-      }
-  };
-  xhttp.open("POST", "/api/", true);
-
+  var url = '/api/';
   var nick = document.getElementById('nick').value
-
   var jsonData = { "name": nick, "score": poopCounter};
-
-  // set headers for json
-  xhttp.setRequestHeader( 'Accept', 'application/json');
-  xhttp.setRequestHeader( 'Content-Type', 'application/json' );
-  // HTTP Protocol can only work with strings when transmitting data over the internet.
-  // JSON is a class and .stringify is a class-method. We use it to format
-  // the Javascript Data, which lives in memory, to JSON string.
   var formattedJsonData = JSON.stringify(jsonData);
 
-  // debug
-  console.log(jsonData);
-  console.log(JSON.parse(formattedJsonData));
-
-  // send it off
-  xhttp.send(formattedJsonData);
-  // redirect to scores
-  window.location.replace("/scores.html");
+  fetch(url, {
+    method: 'POST', // or 'PUT'
+    body: formattedJsonData, // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => {
+    console.log('Success:', JSON.stringify(response));
+    window.location.replace("/scores.html");
+  }).catch(error => console.error('Error:', error));
 }
 
 // P5 function
@@ -147,7 +133,7 @@ function showScoreTable(){
            var d1 = document.getElementById('table');
            d1.insertAdjacentHTML('beforeend', '<tr><td>'+ response[i].name + '</td><td>' + response[i].score + '</td></tr>');
          }
-         console.log(xhttp.responseText);
+        //  console.log(xhttp.responseText);
       }
   };
   xhttp.open("GET", "/api/", true);
@@ -175,28 +161,28 @@ function createPoop() {
   if(canCount){
     movers.push(new Mover(random(1, 20)));
     numberofobjects += 1;
-    console.log("cantidad de caquitas: " + numberofobjects.toString())
+    // console.log("cantidad de caquitas: " + numberofobjects.toString())
     var audio;
     var num = random(1);
     if (num < 0.5) {
       audio0 = new Audio('sounds/fart0.mp3');
       audio0.play();
-      console.log("audio0");
+      // console.log("audio0");
     }
     else if (num < 0.8){
       audio2 = new Audio('sounds/fart2.mp3');
       audio2.play();
-      console.log("audio2");
+      // console.log("audio2");
     }
     else if (num < 0.9){
       audio3 = new Audio('sounds/fart3.mp3');
       audio3.play();
-      console.log("audio3");
+      // console.log("audio3");
     }
     else{
       audio4 = new Audio('sounds/fart4.mp3');
       audio4.play();
-      console.log("audio4");
+      // console.log("audio4");
     }
   }
 }
