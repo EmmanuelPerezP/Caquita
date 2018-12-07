@@ -81,6 +81,9 @@ Use gunicorn and nginx for the backend
 * [PostgreSQL](https://www.postgresql.org/) - Database
 * [P5](https://p5js.org/) - Processing Javascript Port
 
+## Notes
+
+The scoring system is not anti-cheating, just an extra function made in 5 min
 
 ## Authors
 
